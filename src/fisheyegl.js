@@ -313,7 +313,7 @@ var FisheyeGl = function FisheyeGl(options){
 
 }
 
-if (typeof(document) != 'undefined')
-  window.FisheyeGl = FisheyeGl;
-else
+// if (typeof(document) != 'undefined')
+//   window.FisheyeGl = FisheyeGl;
+// else
   module.exports = FisheyeGl;
