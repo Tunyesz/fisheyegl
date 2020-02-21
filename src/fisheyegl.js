@@ -41,6 +41,7 @@ var FisheyeGl = function FisheyeGl(options){
   var image = options.image || "images/barrel-distortion.png";
 
   var selector = options.selector || "#canvas";
+  // var canvas = option.canvas;
   var gl = getGLContext(selector);
 
   var shaders = require('./shaders');
@@ -84,7 +85,7 @@ var FisheyeGl = function FisheyeGl(options){
   createBuffers();
 
   function getGLContext(selector){
-    var canvas = document.querySelector(selector);
+    var canvas = option.canvas || document.querySelector(selector);
 
     if(canvas == null){
       throw new Error("there is no canvas on this page");
@@ -291,6 +292,10 @@ var FisheyeGl = function FisheyeGl(options){
 
   }
 
+  function toBlob(callback) {
+    return gl.canvas.toBlob(callback);
+  }
+
   // external API:
   var distorter = {
     options:  options,
@@ -300,7 +305,8 @@ var FisheyeGl = function FisheyeGl(options){
     run:      run,
     getImage: getImage,
     setImage: setImage,
-    getSrc:   getSrc
+    getSrc:   getSrc,
+    toBlob:   toBlob
   }
 
   return distorter;
